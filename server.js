@@ -72,7 +72,7 @@ app.get('/register', (req, res) => {
 
 // Konfiguracja sesji
 app.use(session({
-  secret: process.env.sessionPass,
+  secret: 'qJc49HrTIcbVXd889Dzl5HR0DlmxYImJ',
   resave: false,
   saveUninitialized: false,
   cookie: {
