@@ -14,7 +14,7 @@ const crypto = require('crypto');
 // Używanie cookie-parser i CORS
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:8080', // Frontend (upewnij się, że jest zgodny z frontendem)
+  origin: 'https://moneycount-app.onrender.com',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
@@ -203,7 +203,7 @@ app.post('/register', (req, res) => {
 
 
   const token = crypto.randomBytes(16).toString('hex');
-  const verificationLink = `http://localhost:3000/verify?token=${token}`;
+  const verificationLink = `https://moneycount-app.onrender.com/verify?token=${token}`;
   console.log(token)
 
   const transporter = nodemailer.createTransport({
