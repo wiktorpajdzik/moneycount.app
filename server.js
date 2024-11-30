@@ -430,19 +430,6 @@ app.get('/auth', (req, res) => {
   }
 });
 
-// app.get('/auth', (req, res) => {
-//   if (req.session.user) {
-//     // Jeśli sesja istnieje, zwróć dane użytkownika
-//     res.status(200).json({
-//       message: 'Sesja aktywna',
-//       user: req.session.user
-//     });
-//   } else {
-//     res.status(401).json({ message: 'Brak aktywnej sesji użytkownika' });
-//   }
-// });
-
-
 // Wylogowanie użytkownika
 app.get('/logout', (req, res) => {
   req.session.destroy(err => {
