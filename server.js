@@ -420,7 +420,7 @@ app.post('/register', (req, res) => {
 
 // Sprawdzanie statusu logowania
 app.get('/auth', (req, res) => {
-
+  console.log(req.session)
   if (req.session.user) {
     console.log('Użytkownik zalogowany:', req.session.user);
     res.status(200).json({ loggedIn: true, user: req.session.user });
