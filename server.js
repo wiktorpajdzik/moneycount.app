@@ -73,12 +73,11 @@ app.get('/register', (req, res) => {
 // Konfiguracja sesji
 app.use(session({
   secret: process.env.sessionPass,
-  resave: false,
   saveUninitialized: false,
   cookie: {
     maxAge: 3600000, // Czas trwania sesji w milisekundach
     httpOnly: true,  // Ciasteczko dostępne tylko dla protokołu HTTP
-    secure: false,   // Ustaw na true, jeśli używasz HTTPS
+    secure: true === 'production', // true w produkcji, false lokalnie
     sameSite: 'lax'  // Zapobiega problemom z ciasteczkami w różnych domenach
   }
 }));
