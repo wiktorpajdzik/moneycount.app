@@ -88,13 +88,14 @@ app.use(bodyParser.json());
 // Logowanie użytkownika
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  console.log(req.body)
+  console.log(req.body);
+
   // Dopasowanie użytkownika w bazie danych
   const query = 'SELECT * FROM users WHERE email = ? AND verified = 1';
   db.query(query, [email], (err, results) => {
     if (err) {
       console.error('Błąd zapytania:', err);
-      res.status(500).send('Błąd serwera');
+      res.status(500).json({ message: 'Błąd serwera' }); // Zwracamy JSON zamiast HTML
       return;
     }
 
@@ -105,7 +106,7 @@ app.post('/login', (req, res) => {
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) {
           console.error('Błąd porównywania haseł:', err);
-          res.status(500).send('Błąd serwera');
+          res.status(500).json({ message: 'Błąd serwera' }); // Zwracamy JSON zamiast HTML
           return;
         }
 
@@ -117,32 +118,35 @@ app.post('/login', (req, res) => {
             surname: user.surname,
             email: user.email,
             currency: user.currency,
-            img: user.user_img
+            img: user.user_img,
           };
-        
+
           // Wymuszenie zapisu sesji z obsługą błędów
           req.session.save((err) => {
             if (err) {
               console.error('Błąd przy zapisie sesji:', err);
-              return res.status(500).send('Wystąpił problem z zapisaniem sesji.');
+              return res.status(500).json({ message: 'Wystąpił problem z zapisaniem sesji.' });
             }
-        
-            // Sesja zapisana poprawnie, kontynuuj logikę
+
+            // Sesja zapisana poprawnie
             console.log('Zalogowano użytkownika:', req.session.user);
-            console.log(req.session);
-        
-            // Przekierowanie użytkownika na stronę docelową (np. dashboard)
-            res.redirect('/panel');
+
+            // Zwracamy JSON z sukcesem
+            res.status(200).json({
+              message: 'Zalogowano pomyślnie',
+              user: req.session.user, // Możemy przekazać dane użytkownika do frontendu
+            });
           });
         } else {
-          res.status(401).json({ message: 'Nieprawidłowy email lub hasło' });
+          res.status(401).json({ message: 'Nieprawidłowy email lub hasło' }); // Zwracamy JSON zamiast HTML
         }
       });
     } else {
-      res.status(401).json({ message: 'Nieprawidłowy email lub hasło' });
+      res.status(401).json({ message: 'Nieprawidłowy email lub hasło' }); // Zwracamy JSON zamiast HTML
     }
   });
 });
+
 
 app.post('/userImgChange', (req, res) => {
   const { user_img } = req.body
