@@ -418,7 +418,7 @@ app.post('/register', (req, res) => {
   });
 });
 
-Sprawdzanie statusu logowania
+// Sprawdzanie statusu logowania
 app.get('/auth', (req, res) => {
 
   if (req.session.user) {
