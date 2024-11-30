@@ -88,7 +88,7 @@ app.use(bodyParser.json());
 // Logowanie użytkownika
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-
+  console.log(req.body)
   // Dopasowanie użytkownika w bazie danych
   const query = 'SELECT * FROM users WHERE email = ? AND verified = 1';
   db.query(query, [email], (err, results) => {
