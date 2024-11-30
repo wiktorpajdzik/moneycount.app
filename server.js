@@ -77,7 +77,7 @@ app.use(session({
   cookie: {
     maxAge: 3600000, // Czas trwania sesji w milisekundach
     httpOnly: true,  // Ciasteczko dostępne tylko dla protokołu HTTP
-    secure: true === 'production', // true w produkcji, false lokalnie
+    secure: true, // true w produkcji, false lokalnie
     sameSite: 'lax'  // Zapobiega problemom z ciasteczkami w różnych domenach
   }
 }));
