@@ -16,9 +16,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: 'https://moneycount.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-  secure: true,
-  sameSite: 'lax'
+  credentials: true
 }));
 
 const db = mysql.createConnection({
@@ -80,7 +78,7 @@ app.use(session({
   cookie: {
     maxAge: 3600000, // Czas trwania sesji w milisekundach
     httpOnly: true,  // Ciasteczko dostępne tylko dla protokołu HTTP
-    secure: false,   // Ustaw na true, jeśli używasz HTTPS
+    secure: true,   // Ustaw na true, jeśli używasz HTTPS
     sameSite: 'lax'  // Zapobiega problemom z ciasteczkami w różnych domenach
   }
 }));
