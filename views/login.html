@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MoneyCount.app</title>
+    <link rel="icon" href="/img/logos/2.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="menu-logo">
+                <img src="/img/logos/mc1.png" alt="">
+            </div>
+            <div class="menu-right">
+                <h4 class="navItem">Strona główna 🏠</h4>
+                <h4 class="navItem">Nasze rozwiązania 🛠️</h4>
+                <h4 class="navItem">Zarabiaj z nami 💰</h4>
+            </div>
+            <div style="display: flex; gap: 10px;" id="profileInfo">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="../img/logos/mc1.png" class="wp-logo">
+                <a>Wersja 1.0.0</a>
+            </div>
+            <div class="login-container-border">
+                <div class="login-form">
+                    <div class="login-form-element">
+                        <h5>E-mail</h5>
+                        <input class="edit-input" placeholder="E-mail" id="userEmail">
+                    </div>
+                    <div class="login-form-element">
+                        <h5>Hasło</h5>
+                        <input class="edit-input" type="password" placeholder="Hasło" id="userPassword">
+                    </div>
+                    <div class="login-form-button">
+                        <a>Zaloguj się 🔒</a>
+                    </div>
+                    <a class="login-form-a" href="/register">Nie masz konta? Zarejestruj się!</a>
+                    <div class="form-info"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="../js/login.js"></script>
+<script src="../js/footer.js"></script>
+</html>

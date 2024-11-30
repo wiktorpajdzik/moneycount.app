@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel klienta | MoneyCount.app</title>
+    <link rel="icon" href="/img/logos/2.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="menu-logo">
+                <img src="/img/logos/mc1.png" alt="">
+            </div>
+            <div class="menu-right">
+                <h4 class="navItem">Strona główna 🏠</h4>
+                <h4 class="navItem">Nasze rozwiązania 🛠️</h4>
+                <h4 class="navItem">Zarabiaj z nami 💰</h4>
+            </div>
+            <div style="display: flex; gap: 10px;" id="profileInfo">
+            </div>
+        </div>
+    </header>
+    <div class="sub-menu-container">
+        <div class="sub-menu">
+            <div class="sub-menu-el">
+                <a></a>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="panel-container">
+            <div class="panel-content">
+                <div class="container-left">
+                    <div class="container-element-border">
+                        <div class="container-element" id="livePrices">
+                            <h4>🪙 Rynek kryptowalut</h4>
+                            <a>Najnowsze dane z rynku kryptowalut!</a>
+                            <!-- LIVE CENY KRYPTO -->
+                        </div>
+                    </div>
+                    <div class="container-element-border">
+                        <div class="container-element" id="liveCurrency">
+                            <h4>💷 Kursy walut</h4>
+                            <a>Najnowsze kursy kluczowych walut!</a>
+                            <!-- LIVE CENY KRYPTO -->
+                        </div>
+                    </div>
+                </div>
+                <div class="container-section-border">
+                    <div class="container-section">
+                        <div>
+                            <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between;">
+                                <h1>🎉</h1>
+                            </div>
+                            <h1 id="user-name">Cześć XXX, oto Twój majątek!</h1>
+                            <div class="ammounts-container">
+                                <div class="container-ammount">
+                                    <h3 id="total-ammount">0 PLN</h3>
+                                </div>
+                            </div>
+                            <div class="container-legend">
+                                <div>
+                                    <h5>Nazwa aktywa</h5>
+                                    <h6>Zmiana 24H</h6>
+                                </div>
+                                <div>
+                                    <h5>Wartość</h5>
+                                    <h6>Edytuj/Usuń</h6>
+                                </div>
+                            </div>
+                            <div class="container-values" id="container-values">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-right">
+                    <div class="container-element-border">
+                        <div class="container-element">
+                            <h4>📈 Szczegółowy wykres aktywów</h4>
+                            <a>Zobacz jakie aktywo stanowi dany procent Twojego majątku!</a>
+                            <canvas id="simpleChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="container-element-border">
+                        <div class="container-element">
+                            <h4>📊 Podział na kategorie aktywów</h4>
+                            <a>Zobacz procenty kategorii Twojego majątku!</a>
+                            <canvas id="groupChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="../js/script.js"></script>
+<script src="../js/footer.js"></script>
+</html>
