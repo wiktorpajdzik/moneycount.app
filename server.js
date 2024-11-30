@@ -183,7 +183,7 @@ app.get('/verify', (req, res) => {
           <p>Konto zostało pomyślnie zweryfikowane!</p>
           <script>
               setTimeout(function() {
-                  window.location.href = '/nowy-adres';
+                  window.location.href = 'https://moneycount.app/login';
               }, 2000); // Przekierowanie po 2 sekundach
           </script>
       `);
