@@ -154,7 +154,7 @@ app.post('/userImgChange', (req, res) => {
 
 app.get('/verify', (req, res) => {
   const token = req.query.token; // Pobierz token z URL
-
+  window.href.location = '/login'
   // Sprawdzenie tokenu w bazie danych
   const query = 'SELECT * FROM users WHERE verification_token = ?';
   db.query(query, [token], (err, results) => {
