@@ -119,13 +119,21 @@ app.post('/login', (req, res) => {
             currency: user.currency,
             img: user.user_img
           };
-          
-          req.session.save()
-
-          console.log('Zalogowano użytkownika:', req.session.user);
-          console.log(req.session)
-
-          res.status(200).json({ message: 'Zalogowano pomyślnie' });
+        
+          // Wymuszenie zapisu sesji z obsługą błędów
+          req.session.save((err) => {
+            if (err) {
+              console.error('Błąd przy zapisie sesji:', err);
+              return res.status(500).send('Wystąpił problem z zapisaniem sesji.');
+            }
+        
+            // Sesja zapisana poprawnie, kontynuuj logikę
+            console.log('Zalogowano użytkownika:', req.session.user);
+            console.log(req.session);
+        
+            // Przekierowanie użytkownika na stronę docelową (np. dashboard)
+            res.redirect('/dashboard');
+          });
         } else {
           res.status(401).json({ message: 'Nieprawidłowy email lub hasło' });
         }
