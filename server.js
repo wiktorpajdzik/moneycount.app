@@ -203,7 +203,7 @@ app.post('/register', (req, res) => {
 
 
   const token = crypto.randomBytes(16).toString('hex');
-  const verificationLink = `https://moneycount-app.onrender.com/verify?token=${token}`;
+  const verificationLink = `https://moneycount.app/verify?token=${token}`;
   console.log(token)
 
   const transporter = nodemailer.createTransport({
