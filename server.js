@@ -190,12 +190,12 @@ app.post('/register', (req, res) => {
   const { name, surname, email, password } = req.body;
 
   const imageOptions = {
-    1: '../img/pictures/awatar1.svg',
-    2: '../img/pictures/awatar2.svg',
-    3: '../img/pictures/awatar3.svg',
-    4: '../img/pictures/awatar4.svg',
-    5: '../img/pictures/awatar5.svg',
-    6: '../img/pictures/awatar6.svg'
+    1: '../public/img/pictures/awatar1.svg',
+    2: '../public/img/pictures/awatar2.svg',
+    3: '../public/img/pictures/awatar3.svg',
+    4: '../public/img/pictures/awatar4.svg',
+    5: '../public/img/pictures/awatar5.svg',
+    6: '../public/img/pictures/awatar6.svg'
   }
 
   const randomImageIndex = Math.floor(Math.random() * 6) + 1
@@ -203,7 +203,7 @@ app.post('/register', (req, res) => {
 
 
   const token = crypto.randomBytes(16).toString('hex');
-  const verificationLink = `https://moneycount.app/verify?token=${token}`;
+  const verificationLink = `https://moneycount-app.onrender.com/verify?token=${token}`;
   console.log(token)
 
   const transporter = nodemailer.createTransport({
