@@ -179,8 +179,15 @@ app.get('/verify', (req, res) => {
       }
 
       // Potwierdzenie udanej weryfikacji
-      res.send('Konto zostało pomyślnie zweryfikowane!');
-      window.href.location = '/login'
+      res.send(`
+          <p>Konto zostało pomyślnie zweryfikowane!</p>
+          <script>
+              setTimeout(function() {
+                  window.location.href = '/nowy-adres';
+              }, 2000); // Przekierowanie po 2 sekundach
+          </script>
+      `);
+
     });
   });
 });
