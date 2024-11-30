@@ -73,7 +73,8 @@ app.get('/register', (req, res) => {
 // Konfiguracja sesji
 app.use(session({
   secret: process.env.sessionPass,
-  saveUninitialized: false,
+  resave: false, // Nie zapisuj sesji, jeśli nic się nie zmienia
+  saveUninitialized: false, // Nie zapisuj pustych sesji
   cookie: {
     maxAge: 3600000, // Czas trwania sesji w milisekundach
     httpOnly: true,  // Ciasteczko dostępne tylko dla protokołu HTTP
@@ -94,7 +95,7 @@ app.post('/login', (req, res) => {
   db.query(query, [email], (err, results) => {
     if (err) {
       console.error('Błąd zapytania:', err);
-      res.status(500).json({ message: 'Błąd serwera' }); // Zwracamy JSON zamiast HTML
+      res.status(500).json({ message: 'Błąd serwera' });
       return;
     }
 
@@ -105,7 +106,7 @@ app.post('/login', (req, res) => {
       bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) {
           console.error('Błąd porównywania haseł:', err);
-          res.status(500).json({ message: 'Błąd serwera' }); // Zwracamy JSON zamiast HTML
+          res.status(500).json({ message: 'Błąd serwera' });
           return;
         }
 
@@ -129,23 +130,23 @@ app.post('/login', (req, res) => {
 
             // Sesja zapisana poprawnie
             console.log('Zalogowano użytkownika:', req.session.user);
+            console.log('Sesja po zapisie:', req.session);
 
             // Zwracamy JSON z sukcesem
             res.status(200).json({
               message: 'Zalogowano pomyślnie',
-              user: req.session.user, // Możemy przekazać dane użytkownika do frontendu
+              user: req.session.user,
             });
           });
         } else {
-          res.status(401).json({ message: 'Nieprawidłowy email lub hasło' }); // Zwracamy JSON zamiast HTML
+          res.status(401).json({ message: 'Nieprawidłowy email lub hasło' });
         }
       });
     } else {
-      res.status(401).json({ message: 'Nieprawidłowy email lub hasło' }); // Zwracamy JSON zamiast HTML
+      res.status(401).json({ message: 'Nieprawidłowy email lub hasło' });
     }
   });
 });
-
 
 app.post('/userImgChange', (req, res) => {
   const { user_img } = req.body
