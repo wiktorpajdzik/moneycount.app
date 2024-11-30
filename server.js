@@ -121,6 +121,7 @@ app.post('/login', (req, res) => {
           };
 
           console.log('Zalogowano użytkownika:', req.session.user);
+          console.log(req.session)
 
           res.status(200).json({ message: 'Zalogowano pomyślnie' });
         } else {
