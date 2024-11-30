@@ -16,7 +16,9 @@ app.use(cookieParser());
 app.use(cors({
   origin: 'https://moneycount.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  credentials: true,
+  secure: true,
+  sameSite: 'lax'
 }));
 
 const db = mysql.createConnection({
