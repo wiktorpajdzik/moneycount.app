@@ -1,30 +1,30 @@
-const express = require('express');
-const mysql = require('mysql2');
-const cors = require('cors');
-const app = express();
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const nodemailer = require('nodemailer');
-const crypto = require('crypto');
+const express = require('express')
+const mysql = require('mysql2')
+const cors = require('cors')
+const app = express()
+const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt')
+const saltRounds = 10
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const nodemailer = require('nodemailer')
+const crypto = require('crypto')
 
 
 // Używanie cookie-parser i CORS
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(cors({
   origin: 'https://moneycount.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
-}));
+}))
 
 const db = mysql.createConnection({
   host: process.env.dbHost,
   user: process.env.dbUser,
   password: process.env.dbPass,
   database: process.env.dbName
-});
+})
 
 // Sprawdzenie połączenia z bazą danych
 db.connect((err) => {
@@ -78,7 +78,7 @@ app.use(session({
   cookie: {
     maxAge: 3600000, // Czas trwania sesji w milisekundach
     httpOnly: true,  // Ciasteczko dostępne tylko dla protokołu HTTP
-    secure: true,   // Ustaw na true, jeśli używasz HTTPS
+    secure: false,   // Ustaw na true, jeśli używasz HTTPS
     sameSite: 'lax'  // Zapobiega problemom z ciasteczkami w różnych domenach
   }
 }));
@@ -119,6 +119,8 @@ app.post('/login', (req, res) => {
             currency: user.currency,
             img: user.user_img
           };
+          
+          req.session.save()
 
           console.log('Zalogowano użytkownika:', req.session.user);
           console.log(req.session)
