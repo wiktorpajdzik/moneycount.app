@@ -132,7 +132,7 @@ app.post('/login', (req, res) => {
             console.log(req.session);
         
             // Przekierowanie użytkownika na stronę docelową (np. dashboard)
-            res.redirect('/dashboard');
+            res.redirect('/panel');
           });
         } else {
           res.status(401).json({ message: 'Nieprawidłowy email lub hasło' });
