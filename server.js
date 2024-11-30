@@ -419,18 +419,30 @@ app.post('/register', (req, res) => {
 });
 
 // Sprawdzanie statusu logowania
-app.get('/auth', (req, res) => {
-  console.log('Zapytanie do /auth');
-  console.log('Sesja:', req.session); // Wyświetl sesję
+// app.get('/auth', (req, res) => {
+//   console.log('Zapytanie do /auth');
+//   console.log('Sesja:', req.session); // Wyświetl sesję
 
+//   if (req.session.user) {
+//     console.log('Użytkownik zalogowany:', req.session.user);
+//     res.status(200).json({ loggedIn: true, user: req.session.user });
+//   } else {
+//     console.log('Brak aktywnej sesji użytkownika.');
+//     res.status(401).json({ loggedIn: false, message: 'Użytkownik nie jest zalogowany' });
+//   }
+// });
+app.get('/auth', (req, res) => {
   if (req.session.user) {
-    console.log('Użytkownik zalogowany:', req.session.user);
-    res.status(200).json({ loggedIn: true, user: req.session.user });
+    // Jeśli sesja istnieje, zwróć dane użytkownika
+    res.status(200).json({
+      message: 'Sesja aktywna',
+      user: req.session.user
+    });
   } else {
-    console.log('Brak aktywnej sesji użytkownika.');
-    res.status(401).json({ loggedIn: false, message: 'Użytkownik nie jest zalogowany' });
+    res.status(401).json({ message: 'Brak aktywnej sesji użytkownika' });
   }
 });
+
 
 // Wylogowanie użytkownika
 app.get('/logout', (req, res) => {
