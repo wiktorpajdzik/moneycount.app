@@ -20,10 +20,10 @@ app.use(cors({
 }));
 
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'wallet'
+  host: process.env.dbHost,
+  user: process.env.dbUser,
+  password: process.env.dbPass,
+  database: process.env.dbName
 });
 
 // Sprawdzenie połączenia z bazą danych
@@ -72,7 +72,7 @@ app.get('/register', (req, res) => {
 
 // Konfiguracja sesji
 app.use(session({
-  secret: 'qJc49HrTIcbVXd889Dzl5HR0DlmxYImJ',
+  secret: process.env.sessionPass,
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -207,12 +207,12 @@ app.post('/register', (req, res) => {
   console.log(token)
 
   const transporter = nodemailer.createTransport({
-    host: 'mail.cba.pl',
-    port: 587,
+    host: process.env.mailHost,
+    port: process.env.mailPort,
     secure: false,
     auth: {
       user: 'no-reply@moneycount.app',
-      pass: 'W3qzhrJ1kWOFy9P'
+      pass: process.env.mailPass
     }
   });
 
