@@ -14,7 +14,7 @@ const crypto = require('crypto');
 // Używanie cookie-parser i CORS
 app.use(cookieParser());
 app.use(cors({
-  origin: '*',
+  origin: 'https://www.moneycount.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
